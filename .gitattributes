@@ -1,0 +1,12 @@
+# Public repository, cloned on Linux and Windows alike. One line ending (LF) in commits.
+* text=auto eol=lf
+
+# Leave binaries alone.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary

@@ -1,0 +1,29 @@
+# Editors
+/.idea/
+/.vscode/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Agent notes, not part of the framework
+/.ai/
+
+# User uploads, content does not belong in the repository
+/uploads/
+
+# Real credentials and the private directory the kernel may use
+/config/database.local.php
+/kernel-private/
+.env
+
+# Local dumps, logs and backups
+*.log
+*.sql
+*.sqlite
+*.bak
+
+# Agent instructions, local only
+/CLAUDE.md
