@@ -1,0 +1,30 @@
+<?php
+declare(strict_types=1);
+/** @var array $errors */
+/** @var string $title */
+/** @var string $csrfToken */
+/** @var \Engine\Translation\Translator $translator */
+$pageTitle = $translator->trans('example.create.title');
+require BASE_PATH . '/templates/_partials/_header.php';
+?>
+
+<h1><?= htmlspecialchars($pageTitle) ?></h1>
+
+<form method="post" action="/items/create" class="form-narrow">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
+
+    <div class="form-group">
+        <label for="title"><?= htmlspecialchars($translator->trans('example.title')) ?></label>
+        <?php if (!empty($errors['title'])): ?>
+            <div class="error"><?= htmlspecialchars($errors['title']) ?></div>
+        <?php endif; ?>
+        <input type="text" id="title" name="title" value="<?= htmlspecialchars($title) ?>" autofocus>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn"><?= htmlspecialchars($translator->trans('example.create.submit')) ?></button>
+        <a href="/items" class="btn btn-secondary"><?= htmlspecialchars($translator->trans('example.create.cancel')) ?></a>
+    </div>
+</form>
+
+<?php require BASE_PATH . '/templates/_partials/_footer.php'; ?>
