@@ -1,0 +1,26 @@
+# Front controller for Apache. The built-in PHP server ignores this file, router.php does the job there.
+
+Options -Indexes
+
+RewriteEngine On
+
+# Serve existing files (css, js, images) as they are, send the rest to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+
+# Code, config and logs stay invisible, even if someone uploads them.
+RedirectMatch 404 ^/(config|engine|src|templates|tools|var|kernel-private)/
+
+# Dotfiles: repository, agent notes, editor settings. .well-known stays for certificates.
+RedirectMatch 404 ^/\.(?!well-known/)
+
+# Documentation, dumps and backups that ride along over FTP.
+<FilesMatch "\.(md|json|lock|sql|log|bak|old|orig|save|dist|ini|yml|yaml|iml|sqlite)$">
+    Require all denied
+</FilesMatch>
+
+# Editor copies: index.php~, index.php.save-1
+<FilesMatch "(~|\.save-\d+)$">
+    Require all denied
+</FilesMatch>
